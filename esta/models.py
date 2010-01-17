@@ -6,60 +6,60 @@ class EstateType(models.Model):
 class DealType(models.Model):
     name = models.CharField(max_length=30)
 
-class Adress(models.Model):
-    parent_id = ForeignKey(Adress)
-    name = CharField(max_length=200)
-    type = CharField(max_length=30)
+class Address(models.Model):
+    parent_id = ForeignKey(Address)
+    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=30)
 
 class Media(models.Model):
-    title = CharField(max_length=200)
-    path = CharField(max_length=200)
-    announcement = ForeignKey(Announcement)
+    title = models.CharField(max_length=200)
+    path = models.CharField(max_length=200)
+    announcement = models.ForeignKey(Announcement)
 
 class User(models.Model):
-    name = CharField(max_length=200)
-    mail = EmailField(max_length=200)
-    is_agency = BooleanField()
-    phone = IntegerField()
-    adress = ForeignKey(Adress)
+    name = models.CharField(max_length=200)
+    mail = models.EmailField(max_length=200)
+    is_agency = models.BooleanField()
+    phone = models.IntegerField()
+    address = models.ForeignKey(Address)
 
 class Announcement(models.Model):
-    text = TextField(max_lentg=1000)
-    deal_type = ForeignKey(DealType)
-    estate = ForeignKey(Estate)
-    cost = IntegerField()
-    publisher = ForeignKey(User)
-    is_ictive = BooleanField()
-    is_busy = BooleanField()
-    publication_date = DateField()
-    date = DateField()
-    data = TextField(max_lentg=1000)
+    text = models.TextField(max_lentg=1000)
+    deal_type = models.ForeignKey(DealType)
+    estate = models.ForeignKey(Estate)
+    cost = models.IntegerField()
+    publisher = models.ForeignKey(User)
+    is_ictive = models.BooleanField()
+    is_busy = models.BooleanField()
+    publication_date = models.DateField()
+    date = models.DateField()
+    data = models.TextField(max_lentg=1000)
 
 class Estate(models.Model):
-    type = ForeignKey(EstateType)
-    address = ForeignType(Address)
-    house = CharField(max_length=30)
-    structure_type = ForeignKey(StructureType)
-    floor = IntegerField(max_length=30)
-    floor_count = IntegerField(max_length=30)
-    room_count = IntegerField(max_length=30)
-    total_space = IntegerField(max_length=30)
-    living_space = IntegerField(max_length=30)
-    kitchen_space = IntegerField(max_length=30)
-    bathroom_type = ForeignKey(BathroomType)
-    balcony_type = ForeignKey(BalconyType)
+    type = models.ForeignKey(EstateType)
+    address = models.ForeignType(Address)
+    house = models.CharField(max_length=30)
+    structure_type = models.ForeignKey(StructureType)
+    floor = models.IntegerField(max_length=30)
+    floor_count = models.IntegerField(max_length=30)
+    room_count = models.IntegerField(max_length=30)
+    total_space = models.IntegerField(max_length=30)
+    living_space = models.IntegerField(max_length=30)
+    kitchen_space = models.IntegerField(max_length=30)
+    bathroom_type = models.ForeignKey(BathroomType)
+    balcony_type = models.ForeignKey(BalconyType)
 
 class BalconyType(models.Model):
-    name = CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
 class BathroomType(models.Model):
-    name = CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
 class StructureType(models.Model):
-    name = CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
 class EstateAttributes(models.Model):
-    attribute_id = ForeignKey(EstateAttribute)
+    attribute_id = models.ForeignKey(EstateAttribute)
 
 class EstateAttribute(models.Model):
-    name = CharField(max_length=100)
+    name = models.CharField(max_length=100)
